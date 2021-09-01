@@ -14,8 +14,13 @@ export default function Home() {
   const [ questao, setQuestao ] = useState(questaoMock)
 
   function respostaFornecida (indice: number) {
-    console.log(indice)
     setQuestao(questao.responderCom(indice))
+  }
+
+  function tempoEsgotado() {
+    if(!questao.respondida){
+      setQuestao(questao.responderCom(-1))
+    }
   }
 
   return (
@@ -25,7 +30,7 @@ export default function Home() {
       alignItems: 'center',
       height: '100vh'
     }}>
-      <Questao valor={questao} respostaFornecida={respostaFornecida}/>
+      <Questao valor={questao} temporPraResposta={5} respostaFornecida={respostaFornecida} tempoEsgotado={tempoEsgotado}/>
     </div>
   )
 }
